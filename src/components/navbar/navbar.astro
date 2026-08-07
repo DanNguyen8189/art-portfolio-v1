@@ -40,7 +40,7 @@ const menuitems = [
 ];
 ---
 
-<Container>
+<Container class="test">
   <!-- <header class="navbar-header"> -->
     <StickyHeader
       class="navbar-sticky-header"
@@ -55,6 +55,7 @@ const menuitems = [
         </a>
         <div class="navbar-menu-toggle">
           <MenuIcon>
+            <!-- Icons from https://www.svgrepo.com/ -->
             <OpenIcon class="navbar-menu-svg">
               <svg class="navbar-menu-svg" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
                 viewBox="0 0 512 512" xml:space="preserve">
@@ -157,10 +158,18 @@ const menuitems = [
 </Container>
 
 <style>
+.test{
+  background-color: green;
+}
 .navbar-sticky-header {
+  /* background-color: purple; */
+  padding: 1.25rem;
   position: sticky;
   top: 0;
   z-index: 20;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
   border-bottom: 1px solid transparent;
   transition: all 0.2s ease;
   display: flex;
@@ -188,12 +197,14 @@ const menuitems = [
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  /* padding: 1.25rem 1.25rem; */
+  padding: 1.25rem 1.25rem;
 }
 
 .navbar-top {
   display: flex;
   width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
   align-items: center;
   justify-content: space-between;
 }
@@ -222,10 +233,11 @@ component and the scoped selectors here won't reach it otherwise */
 :global(#astronav-menu) {
   padding: 0;
   border: 0;
-  background: transparent;
   line-height: 0;
   appearance: none;
   -webkit-appearance: none;
+  margin: 0;
+  background-color: transparent;
 }
 
 .navbar-menu-svg {
@@ -245,6 +257,8 @@ otherwise both are shown at all times*/
 .navbar-items {
   display: none;
   width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
   margin-top: 0.5rem;
 }
 
@@ -260,6 +274,13 @@ otherwise both are shown at all times*/
   padding: 0;
   margin: 0;
   width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+:global(html),
+:global(body) {
+  overflow-x: clip;
 }
 
 .navbar-link {

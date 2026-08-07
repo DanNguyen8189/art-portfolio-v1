@@ -1,0 +1,22 @@
+---
+import Gallery from "./Gallery.tsx";
+import { getPhotosFromContent } from "../lib/photos";
+
+const photos = getPhotosFromContent();
+---
+
+
+<main class="container">
+  <Gallery client:load photos={photos} />
+  <!-- needs to be hydrated/made interactive on page load so that react can calculate image widths and heights.
+  react-photo-album containers require this to figure out row/column breaks. Without it, the album container
+  renders but is empty. Server gives structure fast, client computes layout--->
+</main>
+
+<style>
+  .container {
+    /* max-width: 1168px; */
+    margin: 0 auto;
+    padding: 16px;
+  }
+</style>
