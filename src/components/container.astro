@@ -2,6 +2,17 @@
 const { class: className } = Astro.props;
 ---
 
-<div class:list={["max-w-(--breakpoint-xl) mx-auto px-5", className]}>
+<div class:list={["site-container", className]}>
   <slot />
 </div>
+
+<style>
+.site-container {
+  width: 100%;
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+}
+</style>

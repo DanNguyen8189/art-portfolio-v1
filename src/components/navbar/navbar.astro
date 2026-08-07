@@ -2,7 +2,7 @@
 import Container from "@/components/container.astro";
 import Link from "@/components/ui/link.astro";
 import Dropdown from "./dropdown.astro";
-import { Astronav, MenuItems, MenuIcon } from "astro-navbar";
+import { Astronav, MenuItems, MenuIcon, StickyHeader } from "astro-navbar";
 
 const menuitems = [
   {
@@ -16,7 +16,8 @@ const menuitems = [
     title: "Personal",
     path: "#",
     children: [
-      { title: "USPS", path: "#"}
+      { title: "USPS", path: "#"},
+      { title: "Horns and Hooves", path:"#"}
     ]
   },
   {
@@ -40,13 +41,17 @@ const menuitems = [
 ---
 
 <Container>
-  <header class="navbar-header">
+  <!-- <header class="navbar-header"> -->
+    <StickyHeader
+      class="navbar-sticky-header"
+      scrollY={50}
+      defaultClass="navbar-sticky-default"
+      activeClass="navbar-sticky-active">
     <Astronav>
       <div class="navbar-top">
-        <a href="/" class="navbar-brand"
-          ><span class="navbar-brand-main">Astro</span><span
-            class="navbar-brand-sub">ship</span
-          >
+        <a href="/" class="navbar-brand">
+          <span class="navbar-brand-sub">Dan</span>
+          <span class="navbar-brand-main">Nguyen</span>
         </a>
         <div class="navbar-menu-toggle">
           <MenuIcon class="navbar-menu-icon" />
@@ -95,16 +100,43 @@ const menuitems = [
         <Link href="#" size="md">Sign up</Link>
       </div>
     </div> -->
-  </header>
+    </StickyHeader>
+  <!-- </header> -->
 </Container>
 
 <style>
+.navbar-sticky-header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  border-bottom: 1px solid transparent;
+  transition: all 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar-sticky-default {
+  padding-top: 1.25rem;
+  padding-bottom: 1.25rem;
+  border-color: transparent;
+}
+
+.navbar-sticky-active {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-color: #e5e7eb;
+  backdrop-filter: blur(16px);
+}
+
 .navbar-header {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  margin: 1.25rem 1.25rem;
+  /* padding: 1.25rem 1.25rem; */
 }
 
 .navbar-top {
