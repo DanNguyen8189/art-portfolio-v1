@@ -2,7 +2,7 @@
 import Container from "@/components/container.astro";
 import Link from "@/components/ui/link.astro";
 import Dropdown from "./dropdown.astro";
-import { Astronav, MenuItems, MenuIcon, StickyHeader } from "astro-navbar";
+import { Astronav, MenuItems, MenuIcon, OpenIcon, CloseIcon, StickyHeader } from "astro-navbar";
 
 const menuitems = [
   {
@@ -54,7 +54,59 @@ const menuitems = [
           <span class="navbar-brand-main">Nguyen</span>
         </a>
         <div class="navbar-menu-toggle">
-          <MenuIcon class="navbar-menu-icon" />
+          <MenuIcon>
+            <OpenIcon class="navbar-menu-svg">
+              <svg class="navbar-menu-svg" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+                viewBox="0 0 512 512" xml:space="preserve">
+                <g>
+                  <g>
+                    <path d="M256,0C157.617,0,77.576,80.041,77.576,178.424v258.583c0,41.349,33.642,74.992,74.991,74.992
+                      c20.038,0,38.251-7.916,51.717-20.766C217.749,504.084,235.962,512,256,512c20.038,0,38.251-7.916,51.717-20.766
+                      c13.467,12.85,31.68,20.766,51.718,20.766c41.349,0,74.989-33.643,74.989-74.992V178.424C434.424,80.041,354.383,0,256,0z
+                      M209.454,201.697h-15.515c-12.853,0-23.273-10.42-23.273-23.273s10.42-23.273,23.273-23.273h15.515
+                      c12.853,0,23.273,10.42,23.273,23.273S222.307,201.697,209.454,201.697z M279.273,279.273c0,12.851-10.42,23.273-23.273,23.273
+                      c-12.853,0-23.273-10.422-23.273-23.273v-15.515c0-12.853,10.42-23.273,23.273-23.273c12.853,0,23.273,10.42,23.273,23.273
+                      V279.273z M318.061,201.697h-15.515c-12.853,0-23.273-10.42-23.273-23.273s10.42-23.273,23.273-23.273h15.515
+                      c12.853,0,23.273,10.42,23.273,23.273S330.913,201.697,318.061,201.697z"/>
+                  </g>
+                </g>
+              </svg>
+            </OpenIcon>
+            <CloseIcon class="navbar-menu-svg">
+              <svg class="navbar-menu-svg" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+                viewBox="0 0 512 512" xml:space="preserve">
+                <g>
+                  <g>
+                    <path d="M256.002,0C157.617,0,77.576,80.041,77.576,178.424v258.584c0,41.351,33.641,74.992,74.991,74.992
+                      c20.038,0,38.251-7.916,51.716-20.765C217.749,504.084,235.962,512,256,512s38.251-7.916,51.717-20.765
+                      C321.184,504.084,339.395,512,359.435,512c41.349,0,74.989-33.641,74.989-74.992V178.424C434.424,80.041,354.384,0,256.002,0z
+                      M387.878,437.008c0.002,15.686-12.76,28.447-28.444,28.447s-28.445-12.761-28.445-28.447c0-12.853-10.42-23.273-23.273-23.273
+                      c-12.853,0-23.273,10.42-23.273,23.273c0,15.686-12.76,28.447-28.444,28.447c-15.684,0-28.444-12.761-28.444-28.447
+                      c0-12.853-10.42-23.273-23.273-23.273s-23.273,10.42-23.273,23.273c0,15.686-12.76,28.447-28.444,28.447
+                      s-28.445-12.761-28.445-28.447V178.424c0-72.718,59.161-131.878,131.878-131.878s131.878,59.161,131.878,131.878V437.008z"/>
+                  </g>
+                </g>
+                <g>
+                  <g>
+                    <path d="M209.456,155.151h-15.515c-12.853,0-23.273,10.42-23.273,23.273s10.42,23.273,23.273,23.273h15.515
+                      c12.853,0,23.273-10.42,23.273-23.273S222.309,155.151,209.456,155.151z"/>
+                  </g>
+                </g>
+                <g>
+                  <g>
+                    <path d="M318.062,155.151h-15.515c-12.853,0-23.273,10.42-23.273,23.273s10.42,23.273,23.273,23.273h15.515
+                      c12.853,0,23.273-10.42,23.273-23.273S330.915,155.151,318.062,155.151z"/>
+                  </g>
+                </g>
+                <g>
+                  <g>
+                    <path d="M256.002,240.484c-12.853,0-23.273,10.42-23.273,23.273v15.515c0,12.853,10.42,23.273,23.273,23.273
+                      c12.853,0,23.273-10.42,23.273-23.273v-15.515C279.274,250.904,268.854,240.484,256.002,240.484z"/>
+                  </g>
+                </g>
+                </svg>
+            </CloseIcon>
+          </MenuIcon>
         </div>
       </div>
       <MenuItems class="navbar-items">
@@ -165,11 +217,30 @@ const menuitems = [
   display: block;
 }
 
-.navbar-menu-icon {
-  width: 1rem;
-  height: 1rem;
-  color: #1f2937;
+/** reset button styling, remove border and bg. global needed because we're trying to style the astro-navbar
+component and the scoped selectors here won't reach it otherwise */
+:global(#astronav-menu) {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  line-height: 0;
+  appearance: none;
+  -webkit-appearance: none;
 }
+
+.navbar-menu-svg {
+  width: 2rem;
+  height: 2rem;
+  fill: black;
+  /* color: #1f2937; */
+}
+
+/** global needed for .hidden class to get applied to astronav menu icon, and switch between open and close icons
+otherwise both are shown at all times*/
+:global(.hidden) .navbar-menu-svg{
+  display: none !important;
+}
+
 
 .navbar-items {
   display: none;
