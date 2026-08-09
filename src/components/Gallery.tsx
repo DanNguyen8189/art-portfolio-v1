@@ -1,18 +1,29 @@
 import * as React from "react";
+import { useState } from "react";
 import "react-photo-album/rows.css";
-import { RowsPhotoAlbum } from "react-photo-album";
+import "react-photo-album/columns.css";
+import { RowsPhotoAlbum, ColumnsPhotoAlbum } from "react-photo-album";
 import type { Photo } from "../lib/photos";
+import Lightbox from "yet-another-react-lightbox";
+import "yet-another-react-lightbox/styles.css";
+import Fullscreen from "yet-another-react-lightbox/plugins/fullscreen";
+import Slideshow from "yet-another-react-lightbox/plugins/slideshow";
+import Thumbnails from "yet-another-react-lightbox/plugins/thumbnails";
+import Zoom from "yet-another-react-lightbox/plugins/zoom";
+import "yet-another-react-lightbox/plugins/thumbnails.css";
 
 export default function Gallery({ photos }: { photos: Photo[] }) {
+  const [index, setIndex] = useState(-1);
   return (
     <div className="gallery-layout-switch">
-      <div className="desktop-rows">
+      <div className="rows-layout">
         <RowsPhotoAlbum
           photos={photos}
           targetRowHeight={220}
           defaultContainerWidth={1168}
           spacing={12}
           padding={0}
+          onClick={({ index }) => setIndex(index)}
           sizes={{
             size: "1168px",
             sizes: [
@@ -24,7 +35,23 @@ export default function Gallery({ photos }: { photos: Photo[] }) {
         />
       </div>
 
-      <div className="mobile-stack" role="group" aria-label="Photo album">
+      <div className="columns-layout">
+        <ColumnsPhotoAlbum photos={photos} 
+        columns={1}
+        onClick={({ index }) => setIndex(index)}
+        />;
+      </div>
+
+      <Lightbox
+        slides={photos}
+        open={index >= 0}
+        index={index}
+        close={() => setIndex(-1)}
+        // enable optional lightbox plugins
+        plugins={[Fullscreen, Slideshow, Thumbnails, Zoom]}
+      />
+
+      {/* <div className="mobile-stack" role="group" aria-label="Photo album">
         {photos.map((photo, index) => (
           <img
             key={`${photo.src}-${index}`}
@@ -34,30 +61,30 @@ export default function Gallery({ photos }: { photos: Photo[] }) {
             decoding="async"
           />
         ))}
-      </div>
+      </div> */}
 
       <style>{`
         .gallery-layout-switch {
           width: 100%;
         }
 
-        .mobile-stack {
+        .columns-layout {
           display: none;
           width: 100%;
         }
 
-        .mobile-stack img {
+        .columns-layout img {
           display: block;
           width: 100%;
           height: auto;
         }
 
         @media (max-width: 768px) {
-          .desktop-rows {
+          .rows-layout {
             display: none;
           }
 
-          .mobile-stack {
+          .columns-layout {
             display: grid;
             grid-template-columns: 1fr;
             gap: 10px;
