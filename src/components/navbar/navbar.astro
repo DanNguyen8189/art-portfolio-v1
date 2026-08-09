@@ -47,7 +47,7 @@ const menuitems = [
       scrollY={50}
       defaultClass="navbar-sticky-default"
       activeClass="navbar-sticky-active"> -->
-    <Astronav>
+    <Astronav closeOnClick>
       <!-- <div class="navbar-top"> -->
         <div class="navbar-menu-toggle">
           <MenuIcon>
@@ -96,7 +96,7 @@ const menuitems = [
         <div>Visual Development & Illustration</div>
         </div>
       <!-- </div> -->
-      <MenuItems class="navbar-items">
+      <MenuItems class="navbar-items hidden">
         <ul class="navbar-nav-list">
           {
             menuitems.map((item, index) => (
