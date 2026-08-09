@@ -44,3 +44,10 @@ All commands are run from the root of the project, from a terminal:
 ## 👀 Want to learn more?
 
 Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+
+## Art portfolio
+This is my art portfolio! Built with Astro, react and vite
+Art gallery layout was made with https://github.com/igordanchenko/react-photo-album
+Lightbox functionality comes from https://github.com/igordanchenko/yet-another-react-lightbox
+
+

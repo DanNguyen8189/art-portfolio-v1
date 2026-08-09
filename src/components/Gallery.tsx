@@ -64,6 +64,26 @@ export default function Gallery({ photos }: { photos: Photo[] }) {
       </div> */}
 
       <style>{`
+        @keyframes photoFadeIn {
+          from {
+            opacity: 0;
+            transform: translateY(6px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        .gallery-layout-switch {
+          width: 100%;
+        }
+
+        .gallery-layout-switch img {
+          opacity: 0;
+          animation: photoFadeIn 700ms ease forwards;
+        }
+          
         .gallery-layout-switch {
           width: 100%;
         }
