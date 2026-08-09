@@ -266,15 +266,35 @@ otherwise both are shown at all times*/
 }
 
 .navbar-items {
-  display: none;
+  display: grid; /** so we can animate w/o hardcoding height; 
+  makes container naturally grow in height as opposed to display: flex
+  which gives a smoother animation */
+  grid-template-rows: 0fr; /** start out closed */
+  opacity: 0;
+  /* transform: translateY(-0.75rem); */
+  transition: grid-template-rows 0.5s ease, opacity 0.5s ease;
+  pointer-events: none;
   width: 100%;
   max-width: 100%;
   box-sizing: border-box;
   margin-top: 0.5rem;
 }
 
+.navbar-items > * {
+  min-height: 0;
+  overflow: hidden;
+}
+
 .navbar-items:not(.hidden) {
-  display: flex;
+  /** astro-navbar applies the .hidden class when the menu toggle is clicked */
+  grid-template-rows: 1fr;
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.navbar-items.hidden {
+  display: grid !important;
 }
 
 .navbar-nav-list {
@@ -366,8 +386,19 @@ otherwise both are shown at all times*/
 
   .navbar-items {
     display: flex;
+    flex-direction: row;
+    overflow: visible;
+    grid-template-rows: none;
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
+    transition: none;
     width: auto;
     margin-top: 0;
+  }
+
+  .navbar-items > * {
+    overflow: visible;
   }
 
   /* .navbar-items:not(.hidden) {
