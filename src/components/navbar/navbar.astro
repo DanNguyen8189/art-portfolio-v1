@@ -49,10 +49,13 @@ const menuitems = [
       activeClass="navbar-sticky-active">
     <Astronav>
       <div class="navbar-top">
+        <div class="title-card">
         <a href="/" class="navbar-brand">
-          <span class="navbar-brand-sub">Dan</span>
-          <span class="navbar-brand-main">Nguyen</span>
+          <span class="navbar-brand-sub">Dan N</span>
+          <span class="navbar-brand-main">guyen</span>
         </a>
+        <div>Visual Development & Illustration</div>
+        </div>
         <div class="navbar-menu-toggle">
           <MenuIcon>
             <!-- Icons from https://www.svgrepo.com/ -->
@@ -205,14 +208,15 @@ const menuitems = [
   width: 100%;
   max-width: 100%;
   box-sizing: border-box;
-  align-items: center;
+  align-items: start;
   justify-content: space-between;
 }
 
 .navbar-brand {
-  font-size: 1.125rem;
+  font-size: 2rem;
   text-decoration: none;
   color: inherit;
+  font-family: "variete-cabaret";
 }
 
 .navbar-brand-main {
@@ -225,7 +229,22 @@ const menuitems = [
 }
 
 .navbar-menu-toggle {
+  /* margin-left: auto; */
   display: block;
+}
+
+.title-card {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  margin-right: auto;
+}
+
+@font-face {
+  font-family: 'variete-cabaret';
+  src: url('../../assets/fonts/variete-font/VarieteCabaret-zJZa.ttf') format('truetype');
+  /* font-weight: normal;
+  font-style: normal; */
 }
 
 /** reset button styling, remove border and bg. global needed because we're trying to style the astro-navbar
@@ -240,6 +259,7 @@ component and the scoped selectors here won't reach it otherwise */
   background-color: transparent;
 }
 
+
 .navbar-menu-svg {
   width: 2rem;
   height: 2rem;
@@ -252,7 +272,6 @@ otherwise both are shown at all times*/
 :global(.hidden) .navbar-menu-svg{
   display: none !important;
 }
-
 
 .navbar-items {
   display: none;
@@ -340,6 +359,16 @@ otherwise both are shown at all times*/
 
   .navbar-top {
     width: auto;
+  }
+
+  .title-card {
+    align-items: center;
+    /* margin-right: auto; */
+    /* margin: auto; */
+  }
+
+  .navbar-brand {
+    font-size: 3rem;
   }
 
   .navbar-menu-toggle {
