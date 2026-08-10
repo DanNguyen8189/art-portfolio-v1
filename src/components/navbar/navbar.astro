@@ -9,15 +9,15 @@ const menuitems = [
     title: "Work",
     path: "#",
     children: [
-      { title: "Yogurtwurld", path: "#" },
+      { title: "Yogurtwurld", path: "/yogurtwurld" },
     ],
   },
   {
     title: "Personal",
     path: "#",
     children: [
-      { title: "USPS", path: "#"},
-      { title: "Horns and Hooves", path:"#"}
+      { title: "USPS", path: "/usps"},
+      { title: "Horns and Hooves", path:"/hornsandhooves"}
     ]
   },
   {
@@ -222,13 +222,6 @@ const menuitems = [
   align-items: start;
   /* margin-right: auto; */
   width: 100%;
-}
-
-@font-face {
-  font-family: 'variete-cabaret';
-  src: url('../../assets/fonts/variete-font/VarieteCabaret-zJZa.ttf') format('truetype');
-  /* font-weight: normal;
-  font-style: normal; */
 }
 
 /** reset button styling, remove border and bg. global needed because we're trying to style the astro-navbar

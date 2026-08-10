@@ -1,13 +1,74 @@
 ---
 import Gallery from "./Gallery.tsx";
-import { getPhotosFromContent } from "../lib/photos";
+import { getPhotosFromContent, type Photo } from "../lib/photos";
+import type { GalleryBlock } from "../lib/gallery-blocks";
 
-const photos = getPhotosFromContent();
+type Props = {
+  folder?: string;
+  title?: string;
+  description?: string;
+  photos?: Photo[];
+  blocks?: GalleryBlock[];
+};
+
+const {
+  folder = "illustrations",
+  title,
+  description,
+  photos: providedPhotos,
+  blocks,
+} = Astro.props as Props;
+const photos = providedPhotos ?? getPhotosFromContent(folder);
+const resolvedBlocks =
+  blocks ?? [{ type: "photoGroup", id: `${folder}-default`, photos } as GalleryBlock];
 ---
 
 
 <main class="container">
-  <Gallery client:load photos={photos} />
+  {(title || description) && (
+    <header class="gallery-page-header">
+      {title && <h1>{title}</h1>}
+      {description && <p>{description}</p>}
+    </header>
+  )}
+  {
+    resolvedBlocks.map((block) => {
+      if (block.type === "text") {
+        return (
+          <section class="gallery-text" id={block.id}>
+            {block.title && <h2>{block.title}</h2>}
+            {block.body && <p>{block.body}</p>}
+          </section>
+        );
+      }
+
+      if (block.type === "fullWidthPhoto") {
+        return (
+          <figure class="gallery-full-width" id={block.id}>
+            <img
+              src={block.photo.src}
+              width={block.photo.width}
+              height={block.photo.height}
+              alt={block.photo.alt || ""}
+              loading="lazy"
+              decoding="async"
+            />
+            {block.caption && <figcaption>{block.caption}</figcaption>}
+          </figure>
+        );
+      }
+
+      if (block.photos.length === 0) {
+        return null;
+      }
+
+      return (
+        <section class="gallery-photo-group" id={block.id}>
+          <Gallery client:load photos={block.photos} />
+        </section>
+      );
+    })
+  }
   <!-- needs to be hydrated/made interactive on page load so that react can calculate image widths and heights.
   react-photo-album containers require this to figure out row/column breaks. Without it, the album container
   renders but is empty. Server gives structure fast, client computes layout--->
@@ -20,5 +81,59 @@ const photos = getPhotosFromContent();
     margin: 0 auto;
     padding: 16px;
     box-sizing: border-box;
+  }
+
+  .gallery-page-header {
+    margin-bottom: 16px;
+  }
+
+  .gallery-page-header h1 {
+    margin: 0;
+    font-size: 1.8rem;
+  }
+
+  .gallery-page-header p {
+    margin: 8px 0 0;
+    color: #4b5563;
+  }
+
+  .gallery-photo-group {
+    margin: 0 0 16px;
+  }
+
+  .gallery-text {
+    margin: 8px 0 24px;
+    max-width: 70ch;
+  }
+
+  .gallery-text h2 {
+    margin: 0 0 8px;
+    font-size: 1.4rem;
+  }
+
+  .gallery-text p {
+    margin: 0;
+    line-height: 1.7;
+    color: #374151;
+  }
+
+  .gallery-full-width {
+    margin: 8px 0 24px;
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+  }
+
+  .gallery-full-width img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .gallery-full-width figcaption {
+    max-width: 1168px;
+    margin: 8px auto 0;
+    padding: 0 16px;
+    color: #6b7280;
   }
 </style>

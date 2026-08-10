@@ -1,0 +1,92 @@
+---
+import landingBg from '../assets/landing-bg.png';
+import "../styles/global.css";
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" href="/favicon.ico" />
+		<meta name="generator" content={Astro.generator} />
+		<title>Dan Nguyen</title>
+	</head>
+	<body>
+		<!-- <slot /> -->
+        <img id="background" src={landingBg.src} alt="" fetchpriority="high" />
+        <section class="hero">
+            <div class="title-card">
+                <a href="/" class="brand">
+                <span class="brand-main">Dan N</span>
+                <span class="brand-sub">guyen</span>
+                </a>
+                <div>Visual Development and Illustration</div>
+                <div>Hi! I’m Dan, an artist residing in LA. I'm a visual development artist in tv animation.</div>
+            </div>
+            <a href="/illustrations" class="btn">Enter Site</a>
+        </section>
+	</body>
+</html>
+
+<style>
+	html,
+	body {
+		margin: 0;
+		/* width: 100%;
+		height: 100%; */
+		min-height: 100vh;
+		margin: 0;
+		/* display: grid;
+		grid-template-rows: auto 1fr auto; */
+        display: flex;
+        align-items: flex-end;
+        width: 100%;
+	}
+	#background {
+		position: fixed;
+		top: 0;
+		left: 0;
+        width: 100vw;
+        height: 100vh;
+        object-fit: cover;
+        object-position: bottom;
+        pointer-events: none;
+		z-index: -1;
+        /* filter: brightness(0.8); */
+	}
+    .hero {
+        width: 100%;
+        padding: 3rem;
+        display: flex;
+        flex-direction: column;
+        background-color: black;
+    }
+    .title-card {
+        display: flex;
+        flex-direction: column;
+        color: white;
+    }
+    .brand {
+        font-size: 2rem;
+        text-decoration: none;
+        color: inherit;
+        font-family: "variete-cabaret";
+    }
+    .btn {
+        align-self: flex-end;
+        display: inline-block;
+        padding: 0.6rem 1.2rem;
+        background-color: #0070f3;
+        color: white;
+        text-decoration: none;
+        border-radius: 6px;
+        font-weight: 600;
+        transition: background-color 0.2s ease;
+    }
+
+    .btn:hover {
+        background-color: #005bb5;
+    }
+</style>
