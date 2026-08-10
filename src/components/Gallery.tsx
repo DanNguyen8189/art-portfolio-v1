@@ -39,7 +39,7 @@ export default function Gallery({ photos }: { photos: Photo[] }) {
         <ColumnsPhotoAlbum photos={photos} 
         columns={1}
         onClick={({ index }) => setIndex(index)}
-        />;
+        />
       </div>
 
       <Lightbox
@@ -88,6 +88,10 @@ export default function Gallery({ photos }: { photos: Photo[] }) {
           width: 100%;
         }
 
+        .rows-layout {
+          width: 100%;
+        }
+
         .columns-layout {
           display: none;
           width: 100%;
@@ -105,9 +109,7 @@ export default function Gallery({ photos }: { photos: Photo[] }) {
           }
 
           .columns-layout {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 10px;
+            display: block;
           }
         }
       `}</style>
