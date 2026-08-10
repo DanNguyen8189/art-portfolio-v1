@@ -1,5 +1,7 @@
 # Astro Starter Kit: Basics
 
+[![E2E Playwright](https://github.com/DanNguyen8189/art-portfolio-v1/actions/workflows/e2e-playwright.yml/badge.svg)](https://github.com/DanNguyen8189/art-portfolio-v1/actions/workflows/e2e-playwright.yml)
+
 ```sh
 npm create astro@latest -- --template basics
 ```

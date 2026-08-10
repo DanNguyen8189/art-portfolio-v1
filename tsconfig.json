@@ -12,7 +12,8 @@
     "ignoreDeprecations": "6.0",
     "strictNullChecks": true,
     "types": [
-      "astro/client"
+      "astro/client",
+      "node"
     ],
     "paths": {
       "@/*": [
