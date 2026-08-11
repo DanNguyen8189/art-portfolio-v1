@@ -2,7 +2,8 @@ import * as React from "react";
 import { useState } from "react";
 import "react-photo-album/rows.css";
 import "react-photo-album/columns.css";
-import { RowsPhotoAlbum, ColumnsPhotoAlbum } from "react-photo-album";
+import "react-photo-album/masonry.css";
+import { RowsPhotoAlbum, ColumnsPhotoAlbum, MasonryPhotoAlbum } from "react-photo-album";
 import type { Photo } from "../lib/photos";
 import Lightbox from "yet-another-react-lightbox";
 import "yet-another-react-lightbox/styles.css";
@@ -17,9 +18,28 @@ export default function Gallery({ photos }: { photos: Photo[] }) {
   return (
     <div className="gallery-layout-switch">
       <div className="rows-layout">
-        <RowsPhotoAlbum
+        {/* <RowsPhotoAlbum
           photos={photos}
           targetRowHeight={220}
+          defaultContainerWidth={1168}
+          spacing={12}
+          padding={0}
+          onClick={({ index }) => setIndex(index)}
+          sizes={{
+            size: "1168px",
+            sizes: [
+              { viewport: "(max-width: 1200px)", size: "calc(100vw - 32px)" },
+              { viewport: "(max-width: 768px)", size: "calc(100vw - 24px)" },
+              { viewport: "(max-width: 480px)", size: "calc(100vw - 16px)" },
+            ],
+          }}
+        /> */}
+        <MasonryPhotoAlbum
+          photos={photos}
+          columns={(containerWidth) => {
+            if (containerWidth < 900) return 2;
+            return 3;
+          }}
           defaultContainerWidth={1168}
           spacing={12}
           padding={0}
