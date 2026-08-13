@@ -19,7 +19,7 @@ export function getPhotosFromContent(folder = "illustrations"): Photo[] {
 
   // Astro requires a static glob, so we match all images and filter by folder
   const modules = import.meta.glob<{ default: ImageMetadata }>(
-    "/src/content/**/*.{jpg,jpeg,png,webp,avif}",
+    "/src/content/**/*.{jpg,jpeg,png,webp,avif,JPG,JPEG,PNG,WEBP,AVIF}",
     { eager: true }
   );
 

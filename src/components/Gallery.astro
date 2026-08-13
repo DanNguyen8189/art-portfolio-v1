@@ -53,6 +53,7 @@ const photos = providedPhotos ?? getPhotosFromContent(folder);
 
   .gallery-page-header p {
     color: var(--color-slate-500);
+    white-space: pre-line; /** newline detection */
   }
   @media (min-width: 1024px) {
     .gallery-page-header{
