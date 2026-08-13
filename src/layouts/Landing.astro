@@ -1,5 +1,6 @@
 ---
 import landingBg from '../assets/landing-bg.png';
+import SocialIcons from '../components/SocialIcons.astro'
 import "../styles/global.css";
 ---
 
@@ -25,43 +26,12 @@ import "../styles/global.css";
                 <div>Visual Development and Illustration</div>
                 <div>Hi! I’m Dan, an artist residing in LA. I'm a background artist in tv animation. Welcome to my site!</div>
             </div>
-      <div class="social-links">
-        <a href="https://www.instagram.com/danimalphantom/" class="social-link" aria-label="Visit Instagram page">
-          <svg xmlns="http://www.w3.org/2000/svg" class="social-icon" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
-          </svg>
-        </a>
-        <a href="https://www.linkedin.com/in/dannguyen8189/" class="social-link" aria-label="Visit LinkedIn page">
-          <!-- <svg xmlns="http://www.w3.org/2000/svg" class="social-icon" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M4.98 3.5c0 1.381-1.11 2.5-2.48 2.5s-2.48-1.119-2.48-2.5c0-1.38 1.11-2.5 2.48-2.5s2.48 1.12 2.48 2.5zm.02 4.5h-5v16h5v-16zm7.982 0h-4.968v16h4.969v-8.399c0-4.67 6.029-5.052 6.029 0v8.399h4.988v-10.131c0-7.88-8.922-7.593-11.018-3.714v-2.155z" />
-          </svg> -->
-          <svg class="social-icon" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-            viewBox="0 0 512 512" xml:space="preserve">
-            <g id="7935ec95c421cee6d86eb22ecd125aef">
-            <path style="display: inline; fill-rule: evenodd; clip-rule: evenodd;" d="M116.504,500.219V170.654H6.975v329.564H116.504
-                L116.504,500.219z M61.751,125.674c38.183,0,61.968-25.328,61.968-56.953c-0.722-32.328-23.785-56.941-61.252-56.941
-                C24.994,11.781,0.5,36.394,0.5,68.722c0,31.625,23.772,56.953,60.53,56.953H61.751L61.751,125.674z M177.124,500.219
-                c0,0,1.437-298.643,0-329.564H286.67v47.794h-0.727c14.404-22.49,40.354-55.533,99.44-55.533
-                c72.085,0,126.116,47.103,126.116,148.333v188.971H401.971V323.912c0-44.301-15.848-74.531-55.497-74.531
-                c-30.254,0-48.284,20.38-56.202,40.08c-2.897,7.012-3.602,16.861-3.602,26.711v184.047H177.124L177.124,500.219z">
-            </path>
-            </g>
-          </svg>
-        </a>
-        <a href="mailto:dann.comet@gmail.com" class="social-link" aria-label="Send an email">
-          <svg class="social-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <title/>
-            <g id="Complete">
-            <g id="mail">
-            <g>
-            <polyline fill="none" points="4 8.2 12 14.1 20 8.2" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
-            <rect fill="none" height="14" rx="2" ry="2" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="18" x="3" y="6.5"/>
-            </g>
-            </g>
-            </g>
-          </svg>
-        </a>
-      </div>
+        <SocialIcons
+            border={true}
+            color="white"
+            gap="1rem"
+            size="1rem"
+        />
             <a href="/illustrations" class="btn">ENTER SITE</a>
         </section>
 	</body>
@@ -115,34 +85,6 @@ import "../styles/global.css";
         text-decoration: none;
         color: inherit;
         font-family: var(--font-brand);
-    }
-    /* Social Links */
-    .social-links {
-        display: flex;
-        gap: 1rem;
-    }
-    .social-link {
-        color: white;
-        transition: color var(--transition-duration);
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        border: 1px solid white; /* Border color and thickness */
-        border-radius: 50%; /* Makes it a perfect circle */
-        padding: .5rem;
-    }
-    .social-link:hover {
-        color: var(--color-indigo-600);
-        border: 1px solid var(--color-indigo-600);
-    }
-    .social-icon {
-        height: 1rem;
-        width: 1rem;
-        display: block;
-        color: inherit;
-        fill: currentColor;
-        stroke: currentColor;
-        flex-shrink: 0;
     }
     .btn {
         align-self: flex-end;
