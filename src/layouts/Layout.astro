@@ -41,14 +41,22 @@ import "../styles/global.css";
 	}
 
 	.page-shell {
+		/* width: 100%;
+		max-width: 1150px; */
 		width: 100%;
-		max-width: 1250px;
-		margin: 0 auto;
+		/* margin: 0 auto; */
+		margin-left: auto;
 		flex: 1 0 auto;
 	}
 
 	footer {
 		width: 100%;
 		margin-top: auto;
+	}
+
+	@media (min-width: 1024px) {
+		.page-shell {
+			width: 80%;
+		}
 	}
 </style>
