@@ -1,32 +1,30 @@
 ---
-import SocialIcons from './SocialIcons.astro';
+import SocialIcons from "./SocialIcons.astro";
 const today = new Date();
 ---
-<!-- for reference later https://landinggo.com/component/footer-business-modern -->
-<!-- icons from https://www.svgrepo.com/ -->
+
+<!-- for reference later https://landinggo.com/component/footer-business-modern --><!-- icons from https://www.svgrepo.com/ -->
 <section class="footer">
-  <div class="footer-container">
-    <div class="footer-section">
-      <div class="copyright">
-        Website built by me! :D
-      </div>
-    </div>
-    <div class="footer-section">
-      <SocialIcons
-        border={false}
-        color="var(--color-slate-600)"
-        gap="1rem"
-        size="1rem"
-      />
-    </div>
-    <div class="bottom-footer">
-      <div class="bottom-footer-content">
-        <div class="copyright">
-          © {today.getFullYear()} Dan Nguyen. All rights reserved.
+    <div class="footer-container">
+        <div class="footer-section">
+            <div class="copyright">Website built by me! :D</div>
         </div>
-      </div>
+        <div class="footer-section">
+            <SocialIcons
+                border={false}
+                color="var(--color-slate-600)"
+                gap="1rem"
+                size="1rem"
+            />
+        </div>
+        <div class="bottom-footer">
+            <div class="bottom-footer-content">
+                <div class="copyright">
+                    © {today.getFullYear()} Dan Nguyen. All rights reserved.
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
 </section>
 <!-- <script>
   // This script is only for accessibility improvements and minimal interactions
@@ -45,65 +43,65 @@ const today = new Date();
 </script> -->
 
 <style>
-/* Reset */
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  /* font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"; */
-}
-.footer {
-  /* background-color: var(--color-slate-50); */
-  background-color: white;
-  color: var(--color-slate-900);
-  /* padding-top: 2rem;
+    /* Reset */
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        /* font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"; */
+    }
+    .footer {
+        /* background-color: var(--color-slate-50); */
+        background-color: white;
+        color: var(--color-slate-900);
+        /* padding-top: 2rem;
   padding-bottom: 2rem; */
-  border-top: 1px solid var(--color-slate-200);
-}
+        border-top: 1px solid var(--color-slate-200);
+    }
 
-/* Container */
-.footer-container {
-  width: 100%;
-  padding: 2rem;
-  display: flex;
-  flex-direction: column;
-  gap: 1.25rem;
-  align-items: center;
-  /* max-width: 1280px; */
-  /* margin: 0 auto; */
-  /* padding: 0 var(--container-padding); */
-}
+    /* Container */
+    .footer-container {
+        width: 100%;
+        padding: 2rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1.25rem;
+        align-items: center;
+        /* max-width: 1280px; */
+        /* margin: 0 auto; */
+        /* padding: 0 var(--container-padding); */
+    }
 
-/* Bottom Footer */
-/* .bottom-footer {
+    /* Bottom Footer */
+    /* .bottom-footer {
   border-top: 1px solid var(--color-slate-200);
   padding-top: 1rem;
 } */
-.bottom-footer-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1rem;
-}
-.copyright {
-  color: var(--color-slate-600);
-  font-size: 0.875rem;
-  /* margin-bottom: 1rem; */
-}
-/* Responsive Breakpoints */
-@media (min-width: 768px) {
-  .footer-container {
-    align-items: flex-end;
-  }
-  /* .footer-container {
+    .bottom-footer-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+    .copyright {
+        color: var(--color-slate-600);
+        font-size: 0.875rem;
+        /* margin-bottom: 1rem; */
+    }
+    /* Responsive Breakpoints */
+    @media (min-width: 768px) {
+        .footer-container {
+            align-items: flex-end;
+        }
+        /* .footer-container {
     flex-direction: row;
   }
   .bottom-footer {
     margin-left: auto;
   } */
-  /* .bottom-footer-content {
+        /* .bottom-footer-content {
     flex-direction: row;
     justify-content: space-between;
   } */
-}
+    }
 </style>

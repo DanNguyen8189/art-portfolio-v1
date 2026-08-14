@@ -14,11 +14,11 @@ import Zoom from "yet-another-react-lightbox/plugins/zoom";
 import "yet-another-react-lightbox/plugins/thumbnails.css";
 
 export default function Gallery({ photos }: { photos: Photo[] }) {
-  const [index, setIndex] = useState(-1);
-  return (
-    <div className="gallery-layout-switch">
-      <div className="rows-layout">
-        {/* <RowsPhotoAlbum
+    const [index, setIndex] = useState(-1);
+    return (
+        <div className="gallery-layout-switch">
+            <div className="rows-layout">
+                {/* <RowsPhotoAlbum
           photos={photos}
           targetRowHeight={220}
           defaultContainerWidth={1168}
@@ -34,44 +34,44 @@ export default function Gallery({ photos }: { photos: Photo[] }) {
             ],
           }}
         /> */}
-        <MasonryPhotoAlbum
-          photos={photos}
-          columns={(containerWidth) => {
-            if (containerWidth < 900) return 2;
-            return 3;
-          }}
-          defaultContainerWidth={1168}
-          spacing={12}
-          padding={0}
-          onClick={({ index }) => setIndex(index)}
-          sizes={{
-            size: "1168px",
-            sizes: [
-              { viewport: "(max-width: 1200px)", size: "calc(100vw - 32px)" },
-              { viewport: "(max-width: 768px)", size: "calc(100vw - 24px)" },
-              { viewport: "(max-width: 480px)", size: "calc(100vw - 16px)" },
-            ],
-          }}
-        />
-      </div>
+                <MasonryPhotoAlbum
+                    photos={photos}
+                    columns={(containerWidth) => {
+                        if (containerWidth < 900) return 2;
+                        return 3;
+                    }}
+                    defaultContainerWidth={1168}
+                    spacing={12}
+                    padding={0}
+                    onClick={({ index }) => setIndex(index)}
+                    sizes={{
+                        size: "1168px",
+                        sizes: [
+                            { viewport: "(max-width: 1200px)", size: "calc(100vw - 32px)" },
+                            { viewport: "(max-width: 768px)", size: "calc(100vw - 24px)" },
+                            { viewport: "(max-width: 480px)", size: "calc(100vw - 16px)" },
+                        ],
+                    }}
+                />
+            </div>
 
-      <div className="columns-layout">
-        <ColumnsPhotoAlbum photos={photos} 
-        columns={1}
-        onClick={({ index }) => setIndex(index)}
-        />
-      </div>
+            <div className="columns-layout">
+                <ColumnsPhotoAlbum photos={photos}
+                    columns={1}
+                    onClick={({ index }) => setIndex(index)}
+                />
+            </div>
 
-      <Lightbox
-        slides={photos}
-        open={index >= 0}
-        index={index}
-        close={() => setIndex(-1)}
-        // enable optional lightbox plugins
-        plugins={[Fullscreen, Slideshow, Thumbnails, Zoom]}
-      />
+            <Lightbox
+                slides={photos}
+                open={index >= 0}
+                index={index}
+                close={() => setIndex(-1)}
+                // enable optional lightbox plugins
+                plugins={[Fullscreen, Slideshow, Thumbnails, Zoom]}
+            />
 
-      {/* <div className="mobile-stack" role="group" aria-label="Photo album">
+            {/* <div className="mobile-stack" role="group" aria-label="Photo album">
         {photos.map((photo, index) => (
           <img
             key={`${photo.src}-${index}`}
@@ -83,7 +83,7 @@ export default function Gallery({ photos }: { photos: Photo[] }) {
         ))}
       </div> */}
 
-      <style>{`
+            <style>{`
         @keyframes photoFadeIn {
           from {
             opacity: 0;
@@ -133,6 +133,6 @@ export default function Gallery({ photos }: { photos: Photo[] }) {
           }
         }
       `}</style>
-    </div>
-  );
+        </div>
+    );
 }

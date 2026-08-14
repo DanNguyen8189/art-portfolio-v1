@@ -4,153 +4,156 @@ const { title, lastItem, children } = Astro.props;
 ---
 
 <li class="dropdown-item">
-  <DropdownContainer class="dropdown-container">
-    <button class="dropdown-toggle">
-      <span>{title}</span>
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke-width="3"
-        stroke="currentColor"
-        class="dropdown-chevron">
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          d="M19.5 8.25l-7.5 7.5-7.5-7.5"></path>
-      </svg>
-    </button>
-    <DropdownItems class="dropdown-items-wrapper">
-      <div
-        class:list={[
-          "dropdown-menu",
-          lastItem ? "dropdown-menu--right" : "dropdown-menu--left",
-        ]}>
-        <div class="dropdown-panel">
-          {
-            children.map((item: any) => (
-              <a href={item.path} class="dropdown-link">
-                {item.title}
-              </a>
-            ))
-          }
-        </div>
-      </div>
-    </DropdownItems>
-  </DropdownContainer>
+    <DropdownContainer class="dropdown-container">
+        <button class="dropdown-toggle">
+            <span>{title}</span>
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="3"
+                stroke="currentColor"
+                class="dropdown-chevron"
+            >
+                <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M19.5 8.25l-7.5 7.5-7.5-7.5"></path>
+            </svg>
+        </button>
+        <DropdownItems class="dropdown-items-wrapper">
+            <div
+                class:list={[
+                    "dropdown-menu",
+                    lastItem ? "dropdown-menu--right" : "dropdown-menu--left",
+                ]}
+            >
+                <div class="dropdown-panel">
+                    {
+                        children.map((item: any) => (
+                            <a href={item.path} class="dropdown-link">
+                                {item.title}
+                            </a>
+                        ))
+                    }
+                </div>
+            </div>
+        </DropdownItems>
+    </DropdownContainer>
 </li>
 
 <style>
-.dropdown-item {
-  position: relative;
-  list-style: none;
-  width: 100%;
-}
+    .dropdown-item {
+        position: relative;
+        list-style: none;
+        width: 100%;
+    }
 
-.dropdown-container {
-  position: relative;
-  display: block;
-  margin: 0;
-  padding: 0;
-  width: 100%;
-}
+    .dropdown-container {
+        position: relative;
+        display: block;
+        margin: 0;
+        padding: 0;
+        width: 100%;
+    }
 
-/** NOTE: astro-navbar also attaches this to DropdownItems by default, need to specify button!!!*/
-button.dropdown-toggle {
-  
-  display: flex;
-  align-items: center;
-  gap: 0.25rem;
-  width: 100%;
-  padding: 0.5rem 0;
+    /** NOTE: astro-navbar also attaches this to DropdownItems by default, need to specify button!!!*/
+    button.dropdown-toggle {
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
+        width: 100%;
+        padding: 0.5rem 0;
 
-  border: 0;
-  background: transparent;
-  /* color: #4b5563; */
-  color: var(--color-slate-500);
-  cursor: pointer;
-  font: inherit;
-}
+        border: 0;
+        background: transparent;
+        /* color: #4b5563; */
+        color: var(--color-slate-500);
+        cursor: pointer;
+        font: inherit;
+    }
 
-button.dropdown-toggle:hover {
-  color: #111827;
-}
-/** class needed to override dropdownitems default dropdown-toggle class */
-.dropdown-items-wrapper {
-  display: grid; /** keep element rendered so its height can animate */
-  grid-template-rows: 0fr;
-  opacity: 0;
-  width: 100%;
-  margin: 0;
-  padding: 0;
-  pointer-events: none;
-  transition: grid-template-rows 0.5s ease, opacity 0.5s ease;
-}
+    button.dropdown-toggle:hover {
+        color: #111827;
+    }
+    /** class needed to override dropdownitems default dropdown-toggle class */
+    .dropdown-items-wrapper {
+        display: grid; /** keep element rendered so its height can animate */
+        grid-template-rows: 0fr;
+        opacity: 0;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        pointer-events: none;
+        transition:
+            grid-template-rows 0.5s ease,
+            opacity 0.5s ease;
+    }
 
-.dropdown-items-wrapper > * {
-  min-height: 0;
-  overflow: hidden;
-}
+    .dropdown-items-wrapper > * {
+        min-height: 0;
+        overflow: hidden;
+    }
 
-.dropdown-chevron {
-  width: 0.75rem;
-  height: 0.75rem;
-  margin-top: 0.125rem;
-  transition: transform 0.2s ease;
-}
+    .dropdown-chevron {
+        width: 0.75rem;
+        height: 0.75rem;
+        margin-top: 0.125rem;
+        transition: transform 0.2s ease;
+    }
 
-.dropdown-container[aria-expanded="true"] .dropdown-chevron {
-  transform: rotate(180deg);
-}
+    .dropdown-container[aria-expanded="true"] .dropdown-chevron {
+        transform: rotate(180deg);
+    }
 
-.dropdown-menu {
-  display: block;
-  width: 100%;
-  height: 100%;
-  /* margin-top: 0.25rem; */
-}
+    .dropdown-menu {
+        display: block;
+        width: 100%;
+        height: 100%;
+        /* margin-top: 0.25rem; */
+    }
 
-.dropdown-container[aria-expanded="true"] .dropdown-menu {
-  display: block;
-}
+    .dropdown-container[aria-expanded="true"] .dropdown-menu {
+        display: block;
+    }
 
-/** Animation to match the one in navbar, where it slowly expands the menu*/
-.dropdown-container[aria-expanded="true"] > .dropdown-items-wrapper {
-  grid-template-rows: 1fr;
-  opacity: 1;
-  pointer-events: auto;
-}
+    /** Animation to match the one in navbar, where it slowly expands the menu*/
+    .dropdown-container[aria-expanded="true"] > .dropdown-items-wrapper {
+        grid-template-rows: 1fr;
+        opacity: 1;
+        pointer-events: auto;
+    }
 
-.dropdown-menu--right {
-  right: 0;
-  left: auto;
-}
+    .dropdown-menu--right {
+        right: 0;
+        left: auto;
+    }
 
-.dropdown-menu--left {
-  left: 0;
-  right: auto;
-}
+    .dropdown-menu--left {
+        left: 0;
+        right: auto;
+    }
 
-.dropdown-panel {
-  display: flex;
-  flex-direction: column;
-  padding: 0.5rem 0 0.5rem 0.75rem;
-  background: transparent;
-  border: 0;
-}
+    .dropdown-panel {
+        display: flex;
+        flex-direction: column;
+        padding: 0.5rem 0 0.5rem 0.75rem;
+        background: transparent;
+        border: 0;
+    }
 
-.dropdown-link {
-  display: block;
-  padding: 0.35rem 0;
-  color: #4b5563;
-  text-decoration: none;
-}
+    .dropdown-link {
+        display: block;
+        padding: 0.35rem 0;
+        color: #4b5563;
+        text-decoration: none;
+    }
 
-.dropdown-link:hover {
-  color: #111827;
-}
+    .dropdown-link:hover {
+        color: #111827;
+    }
 
-/* @media (min-width: 1024px) {
+    /* @media (min-width: 1024px) {
   .dropdown-container {
     display: flex;
     align-items: center;
@@ -183,5 +186,4 @@ button.dropdown-toggle:hover {
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
   }
 } */
-
 </style>
