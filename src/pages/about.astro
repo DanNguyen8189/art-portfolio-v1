@@ -1,8 +1,72 @@
 ---
 import Construction from '../components/Construction.astro';
 import Layout from '../layouts/Layout.astro';
+import { Image } from 'astro:assets';
+import  ProfileImage from "../content/about/Me.jpeg"
 ---
 
 <Layout>
-	<Construction />
+	<div class="container">
+		<Image
+			src={ProfileImage}
+			alt="My image"
+			class="portrait"
+			width={600}
+			height={600}
+		/>
+		<p class="text">
+			Hi! I’m Dan Nguyen, a Vietnamese-American visual development artist and illustrator located in Los Angeles, currently at RollingStars Studios. I come from a software engineering background but kept up my love of drawing and picked it up again after graduating. I go plein air painting sometimes in my free time.
+		</p>
+	</div>
 </Layout>
+
+<style>
+	.container{
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		width: 100%;
+	}
+	.portrait {
+		align-self: flex-start;
+		width: 95vw;
+		/* height: 400px; */
+		/* max-width: 600px; */
+		aspect-ratio: 1;
+		object-fit: cover;
+		object-position: 100% 100%; /* Focus on bottom right */
+		/* display: block; */
+		/* border-radius: 58% 42% 65% 35% / 42% 55% 45% 58%; */
+		clip-path: polygon(0% 0%, 75% 0%, 100% 25%, 90% 100%, 0% 100%);
+
+	}
+	.text {
+		position: absolute;
+		transform: translateY(-80px); /** moves vertically for mobile layout
+		ended up being ok for desktop too, but adjust accordingly or remove if 
+		content changes*/
+		padding: 1.25rem;
+		padding-right: 3rem; /** adjust as needed */
+		white-space: pre-line;
+		box-sizing: border-box;
+		width: 100%;
+		color: white;
+	}
+
+	@media (min-width: 1024px) {
+		.container {
+			flex-direction: row;
+		}
+
+		.portrait {
+			width: min(80vw, 600px);
+		}
+		.text {
+			position: relative;
+			/* align-self: center; */
+			color: var(--color-slate-600);
+			padding-right: 1.25rem;
+		}
+	}
+</style>
