@@ -1,8 +1,8 @@
-## Folder Layout
+## Folder Structire
 - 'src/components/'
 - 'src/layouts/'
     - universal website layouts where pages live in
-    - Landing.astro is for the landing page, which is different than the rest
+    - Landing.astro is for the landing page, which is different than the rest which use the default
 - 'src/content/'
     - images for the site organized by folder for each page that requires a gallery. Folder names correspond with page name it's associated with
 - 'src/lib/'
