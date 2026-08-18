@@ -13,6 +13,12 @@ import Thumbnails from "yet-another-react-lightbox/plugins/thumbnails";
 import Zoom from "yet-another-react-lightbox/plugins/zoom";
 import "yet-another-react-lightbox/plugins/thumbnails.css";
 
+/** I use gallery-layout switch instead of using just the masonry photo layout
+ * because with just the single layout on mobile, the layout flashes with the 
+ * desktop layout before the mobile one as the calculations are being done. 
+ * Would rather not have that.
+*/
+
 export default function Gallery({ photos }: { photos: Photo[] }) {
     const [index, setIndex] = useState(-1);
     return (

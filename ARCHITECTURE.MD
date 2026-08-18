@@ -30,3 +30,13 @@ the folder field refers to src/content/folder. Note: The image gallery is a soli
 Gallery.astro refers to Gallery.tsx to render the gallery layout with React. React can probably be removed here since lightbox and grid functionality is demonstrated here: https://github.com/kydecker/astro-photo-grid but at the time, I wanted a way to easy switch between row and column layout. I may just want column layout no, but it's ok to leave as is until refactor is needed. The React lightbox seems much faster as well.
 
 It uses a process called Hydration, which improves SSR (Server-Side Rendering) performance and interactivity. Hydration is the process of attaching React’s event listeners and state to server-rendered HTML so the UI becomes interactive without re-rendering the DOM.
+
+At build time
+- getPhotosFromContent() filters and creates the photo array
+- Astro imports image metadata and generates their URLs
+- Gallery gets that array 
+At runtime
+- dimensions and page calculations occur. React-photo-album need's browser's container to determine column count and placement. 
+
+Technically could reduce client side work by replacing client:load with client:visible or client:idle, but still needs client side JS to recompute responsive layouts. 
+Or, use a regular html/css grid to run desktop/mobile layouts but we'd lose measurement based packing and we'd need the lightbox to hydrate separately anyway
