@@ -13,9 +13,8 @@ Open in http://localhost:4321/
 
 ## Credits
 
-Art gallery layout was made with https://github.com/igordanchenko/react-photo-album
+Art gallery layout was made with https://github.com/OlivierEstevez/astro-masonry/
 
-Lightbox functionality comes from https://github.com/igordanchenko/yet-another-react-lightbox
 
 
 

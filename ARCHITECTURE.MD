@@ -41,3 +41,13 @@ At runtime
 
 Technically could reduce client side work by replacing client:load with client:visible or client:idle, but still needs client side JS to recompute responsive layouts. 
 Or, use a regular html/css grid to run desktop/mobile layouts but we'd lose measurement based packing and we'd need the lightbox to hydrate separately anyway
+
+UPDATE 8/19:
+Image gallery functionality switched to astro-masonry package, which uses no react. Only minimal client side javascript to figure out the layout. It works much better with Astro's <Image> component and loads all of the images faster.
+Gallery.tsx is no longer needed.
+
+At build time
+- getPhotosFromContent() filters and creates the photo array
+- Astro imports images metadata and uses it to display them in Gallery.astro
+At runtime
+- dimensions and page calculations occur. Astro-masonry reads browser's container to determine column count and placement. 

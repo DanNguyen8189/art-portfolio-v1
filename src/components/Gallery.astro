@@ -1,6 +1,8 @@
 ---
 import Gallery from "./Gallery.tsx";
 import { getPhotosFromContent, type Photo } from "../lib/photos";
+import { Masonry } from 'astro-masonry';
+import { Image } from "astro:assets";
 
 type Props = {
     folder?: string;
@@ -27,13 +29,44 @@ const photos = providedPhotos ?? getPhotosFromContent(folder);
             </header>
         )
     }
-    <Gallery client:load photos={photos} />
+    <!-- <Gallery client:load photos={photos} /> -->
     <!-- needs to be hydrated/made interactive on page load so that react can calculate image widths and heights.
   react-photo-album containers require this to figure out row/column breaks. Without it, the album container
   renders but is empty. Server gives structure skeleton, client computes layout--->
+    
+    <Masonry
+        breakpointCols={{
+            default: 3,
+            1200: 3,
+            700: 2,
+            500: 1,
+        }}
+        class="astro-masonry-grid"
+        >
+        {
+            photos.map((photo) => (
+                <Image
+                    src={photo.image}
+                    alt={photo.alt ?? ""}
+                    class="image"
+                    loading="lazy"
+                />
+            ))
+        }
+    </Masonry>
 </main>
 
 <style>
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(6px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
     .container {
         width: 100%;
         /* max-width: 1168px; */
@@ -56,6 +89,23 @@ const photos = providedPhotos ?? getPhotosFromContent(folder);
         margin: 0;
     }
 
+    /* global needed because these are created dynamically by astro-masonry */
+    :global(.astro-masonry-grid) {
+        display: flex;
+        gap: .75rem;
+        animation: photoFadeIn 700ms ease forwards;
+    }
+    :global(.astro-masonry-grid_column) {
+        display: flex;
+        flex-direction: column;
+        gap: .75rem;
+    }
+
+    .image {
+        width: 100%;
+        height: 100%;
+        animation: fadeIn 700ms ease forwards;
+    }
     .gallery-page-header p {
         color: var(--color-slate-500);
         white-space: pre-line; /** newline detection */
