@@ -1,14 +1,15 @@
-## Folder Structire
+## Folder Structure
 - 'src/components/'
 - 'src/layouts/'
-    - universal website layouts where pages live in
-    - Landing.astro is for the landing page, which is different than the rest which use the default
+    - site layouts where pages live in
 - 'src/content/'
-    - images for the site organized by folder for each page that requires a gallery. Folder names correspond with page name it's associated with
+    - images for the site organized by folder for each page that contain images. Folder names correspond with page name they're associated with. For pages with a gallery, not that the order they show up in the folder will be the order they show up on the built site. Rename them alphabetically/numerically to customize
 - 'src/lib/'
-    - photo fetching functionality lives here
+    - static photo fetching functionality lives here
 - 'src/content/navbar'
     - navigation
+- 'src/assets/'
+    - bgs, landing page pg, and imported fonts
 - 'src/pages'
     - site pages
 
@@ -25,7 +26,7 @@ The base module is Gallery.astro. Any page that features an image gallery layout
 	/>
 ```
 
-the folder field refers to src/content/folder. Note: The image gallery is a solid section of images with no text in between images. Would need to hardcode or make a complicated refactor if otherwise.
+the folder field refers to src/content/folder. Note: The image gallery is a solid section of images with no text in between images. Would need to hardcode each page or make a complicated refactor if otherwise.
 
 Gallery.astro refers to Gallery.tsx to render the gallery layout with React. React can probably be removed here since lightbox and grid functionality is demonstrated here: https://github.com/kydecker/astro-photo-grid but at the time, I wanted a way to easy switch between row and column layout. I may just want column layout no, but it's ok to leave as is until refactor is needed. The React lightbox seems much faster as well.
 
