@@ -1,8 +1,9 @@
 ---
 import Gallery from "./Gallery.tsx";
-import { getPhotosFromContent, type Photo } from "../lib/photos";
+import { getPhotosFromContent, type Photo } from "../lib/photos.ts";
 import { Masonry } from 'astro-masonry';
 import { Image } from "astro:assets";
+import Lightbox from './Lightbox.astro';
 
 type Props = {
     folder?: string;
@@ -17,6 +18,7 @@ const {
     description,
     photos: providedPhotos,
 } = Astro.props as Props;
+
 const photos = providedPhotos ?? getPhotosFromContent(folder);
 ---
 
@@ -29,12 +31,12 @@ const photos = providedPhotos ?? getPhotosFromContent(folder);
             </header>
         )
     }
-    <!-- <Gallery client:load photos={photos} /> -->
+    <Gallery client:load photos={photos} />
     <!-- needs to be hydrated/made interactive on page load so that react can calculate image widths and heights.
   react-photo-album containers require this to figure out row/column breaks. Without it, the album container
   renders but is empty. Server gives structure skeleton, client computes layout--->
     
-    <Masonry
+    <!-- <Masonry
         breakpointCols={{
             default: 3,
             1200: 3,
@@ -45,15 +47,17 @@ const photos = providedPhotos ?? getPhotosFromContent(folder);
         >
         {
             photos.map((photo) => (
+                // <a href={`/photo/${photo.src}`}>
                 <Image
-                    src={photo.image}
+                    src={photo.metadata}
                     alt={photo.alt ?? ""}
                     class="image"
                     loading="lazy"
                 />
+                // <Lightbox image={photo.metadata} alt={photo.alt} />
             ))
         }
-    </Masonry>
+    </Masonry> -->
 </main>
 
 <style>
@@ -93,7 +97,6 @@ const photos = providedPhotos ?? getPhotosFromContent(folder);
     :global(.astro-masonry-grid) {
         display: flex;
         gap: .75rem;
-        animation: photoFadeIn 700ms ease forwards;
     }
     :global(.astro-masonry-grid_column) {
         display: flex;
@@ -104,7 +107,7 @@ const photos = providedPhotos ?? getPhotosFromContent(folder);
     .image {
         width: 100%;
         height: 100%;
-        animation: fadeIn 700ms ease forwards;
+        /* animation: fadeIn 700ms ease forwards; */
     }
     .gallery-page-header p {
         color: var(--color-slate-500);

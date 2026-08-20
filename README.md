@@ -11,9 +11,6 @@ npm run dev```
 
 Open in http://localhost:4321/
 
-## Credits
-
-Art gallery layout was made with https://github.com/OlivierEstevez/astro-masonry/
 
 
 

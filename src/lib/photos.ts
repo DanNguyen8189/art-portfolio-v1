@@ -2,7 +2,7 @@ import type { ImageMetadata } from "astro";
 
 export type Photo = {
     src: string;
-    image: ImageMetadata;
+    metadata: ImageMetadata;
     width: number;
     height: number;
     alt?: string;
@@ -32,7 +32,7 @@ export function getPhotosFromContent(folder = "illustrations"): Photo[] {
         .sort(([a], [b]) => a.localeCompare(b))
         .map(([, module]) => ({
             src: module.default.src,
-            image: module.default,
+            metadata: module.default,
             width: module.default.width,
             height: module.default.height,
             alt: "",

@@ -51,3 +51,6 @@ At build time
 - Astro imports images metadata and uses it to display them in Gallery.astro
 At runtime
 - dimensions and page calculations occur. Astro-masonry reads browser's container to determine column count and placement. 
+
+UPDATE 8/19:
+Switched back to react method because it calculates the masonry layout slightly better. The Astro method would sometimes not make the bottom set of images even, and have some columns of images longer than others by 2 images

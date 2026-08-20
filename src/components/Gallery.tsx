@@ -13,7 +13,6 @@ import Thumbnails from "yet-another-react-lightbox/plugins/thumbnails";
 import Zoom from "yet-another-react-lightbox/plugins/zoom";
 import "yet-another-react-lightbox/plugins/thumbnails.css";
 
-/** DEPRECATED, but keeping for reference */
 /** I use gallery-layout switch instead of using just the masonry photo layout
  * because with just the single layout on mobile, the layout flashes with the 
  * desktop layout before the mobile one as the calculations are being done. 
