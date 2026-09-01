@@ -38,3 +38,7 @@ export function getPhotosFromContent(folder = "illustrations"): Photo[] {
             alt: "",
         }));
 }
+
+export function getPhoto(id:string, photos: Photo[]){
+    
+}

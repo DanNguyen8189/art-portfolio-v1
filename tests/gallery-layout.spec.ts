@@ -15,6 +15,7 @@ test.describe("gallery responsive layouts", () => {
     await expect(columnsLayout).toBeHidden();
     await expect(rowImages.first()).toBeVisible();
     await expect(rowImages).not.toHaveCount(0);
+    await expect(page.locator('[role="status"]')).toBeHidden();
   });
 
   test("mobile shows columns layout and renders images", async ({ page }) => {
@@ -29,5 +30,6 @@ test.describe("gallery responsive layouts", () => {
     await expect(columnsLayout).toBeVisible();
     await expect(columnImages.first()).toBeVisible();
     await expect(columnImages).not.toHaveCount(0);
+    await expect(page.locator('[role="status"]')).toBeHidden();
   });
 });

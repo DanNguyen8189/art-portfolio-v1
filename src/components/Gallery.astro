@@ -60,6 +60,7 @@ const photos = providedPhotos ?? getPhotosFromContent(folder);
     </Masonry> -->
 </main>
 
+
 <style>
     @keyframes fadeIn {
         from {
@@ -80,6 +81,13 @@ const photos = providedPhotos ?? getPhotosFromContent(folder);
         margin: 0 auto;
         padding: 16px;
         box-sizing: border-box;
+    }
+
+    .spinner{
+        display:block;
+    }
+    .card {
+        display: none;
     }
 
     .gallery-page-header {

@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "react-photo-album/rows.css";
 import "react-photo-album/columns.css";
 import "react-photo-album/masonry.css";
@@ -21,8 +21,51 @@ import "yet-another-react-lightbox/plugins/thumbnails.css";
 
 export default function Gallery({ photos }: { photos: Photo[] }) {
     const [index, setIndex] = useState(-1);
+    const [isLoading, setIsLoading] = useState(true);
+
+    useEffect(() => {
+        const gallery = document.querySelector<HTMLElement>('.gallery-layout-switch');
+        if (!gallery) return;
+
+        const layoutSelector = window.matchMedia('(max-width: 768px)').matches
+            ? '.columns-layout'
+            : '.rows-layout';
+        const images = Array.from(gallery.querySelectorAll<HTMLImageElement>(`${layoutSelector} img`));
+        if (images.length === 0) {
+            setIsLoading(false);
+            return;
+        }
+
+        let loadedImages = 0;
+        const markAsLoaded = () => {
+            loadedImages += 1;
+            if (loadedImages === images.length) setIsLoading(false);
+        };
+
+        images.forEach((image) => {
+            if (image.complete) {
+                markAsLoaded();
+            } else {
+                image.addEventListener('load', markAsLoaded, { once: true });
+                image.addEventListener('error', markAsLoaded, { once: true });
+            }
+        });
+
+        return () => {
+            images.forEach((image) => {
+                image.removeEventListener('load', markAsLoaded);
+                image.removeEventListener('error', markAsLoaded);
+            });
+        };
+    }, [photos]);
+
     return (
         <div className="gallery-layout-switch">
+            {isLoading && (
+                <div className="gallery-loading" role="status" aria-label="Loading gallery">
+                    <span className="gallery-spinner" />
+                </div>
+            )}
             <div className="rows-layout">
                 {/* <RowsPhotoAlbum
         photos={photos}
@@ -103,6 +146,31 @@ export default function Gallery({ photos }: { photos: Photo[] }) {
 
         .gallery-layout-switch {
             width: 100%;
+            position: relative;
+        }
+
+        .gallery-loading {
+            position: relative;
+            inset: 0;
+            z-index: 10;
+            display: grid;
+            place-items: center;
+            background: rgba(255, 255, 255, 0.88);
+        }
+
+        .gallery-spinner {
+            width: 2.75rem;
+            height: 2.75rem;
+            border: 5px solid rgba(15, 23, 42, 0.2);
+            border-top-color: var(--color-slate-900, #0f172a);
+            border-radius: 50%;
+            animation: gallerySpin 800ms linear infinite;
+        }
+
+        @keyframes gallerySpin {
+            to {
+                transform: rotate(360deg);
+            }
         }
 
         .gallery-layout-switch img {
